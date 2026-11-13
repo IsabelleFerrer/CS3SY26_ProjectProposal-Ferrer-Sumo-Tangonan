@@ -3,31 +3,54 @@
 
 ## Project Proposal Template
 
-### Project Title or Name of the Application	:
+### Project Title or Name of the Application	: TaSched (Task Scheduler)
 ### Section			   	      : Beryllium
 ### Group Members			    : Be09 Ferrer, Be24 Sumo, Be25 Tangonan
 ### Date (Proposal Date)  : Nov 13, 2026
 
 ### Project Description:
 
-- A brief summary of the project description and the need for it.
+**Summary and the Need for the Project:** Some students struggle to balance multiple assignments with overlapping deadlines and varying importance. Ineffective scheduling and prioritization may lead to academic stress/burnout, procrastination, and decreased learning results. Existing scheduling tools often base prioritization on deadlines or rely on self-judgment and discipline rather than a system that converts task attributes into a well-structured schedule. TaSched is an application that addresses these needs by providing a formula-driven system that automatically generates optimized schedules/plans, helping students effectively manage and organize their tasks. It allows the user to input their assignments, projects, quizzes, and other academic-related tasks to monitor deadlines and their progress. It incorporates mathematical calculations to determine which tasks to prioritize.
 
-- Describes system components, features, and expected outputs clearly and logically. NOTE: Clearly described the elements(classes), their attributes and methods and how they will interact with each other.
 
-- Include the description as well of your target demographics as the user of your application. 
+**Target Users:** TaSched is designed for students who are looking for scheduling support to help manage their complex academic workloads and achieve work-life balance along with higher levels of performance. Specifically, it targets:
+- Students with a heavy workload: Students with several subjects and competencies daily who are prone to feeling overwhelmed if their time-management skills are poor.
+- Procrastinators: People who have no fixed schedule yet and thus put off doing tasks to the last minute.
+- Students with learning differences: People who have difficulties in estimating time, regulating attention, executive function, organization, and task organization.
+- Self-paced students: Learners who lack a fixed classroom schedule and learn at their own pace.
 
-- The description is then followed by the class diagram, depicting clearly what was described.
 
-**Sample class Diagram from https://static.visual-paradigm.com/web/images/tutorials/class-diagram-tutorial/01-class-diagram-example.png:**
+**System Components, Features and Expected Outputs:**
 
-![Sample Diagram](https://static.visual-paradigm.com/web/images/tutorials/class-diagram-tutorial/01-class-diagram-example.png)
+Classes, Attributes, and Methods:
+
+Task Class
+- Attributes: task_name (String), task_desc (String), task_deadline (Integer - minutes before due), task_duration (Integer - in minutes), task_importance (Integer - using a likert scale), task_difficulty (Integer - using a likert scale), task_complete (Boolean), task_priorityIndex (Float), assigned_schedule (String).
+- Methods: calculate_priorityIndex(), get_taskDetails(), update_taskName(new_name), update_taskDesc(new_desc), update_taskDeadline(new_deadline), update_taskDuration(new_duration), update_taskImportance(new_importance), update_taskDifficulty(new_difficulty).
+
+Weights Class
+- Attributes: w1_deadline (Float), w2_duration (Float), w3_importance (Float), w4_difficulty (Float).
+- Methods: set_w1Deadline(custom_deadline), set_w2Duration(custom_duration), set_w3Importance(custom_importance), set_w4Difficulty(custom_difficulty), resetWeights(), get_w1Deadline(), get_w2Duration(), get_w3Importance(), get_w4Difficulty().
+
+Schedule Class
+- Attributes: task_list (List), generatedSchedule (Dictionary List).
+- Methods: rankTasksByPriority(), delete_task(task_obj), add_task(task_obj), complete_task(task_obj), generateSchedule(), refreshSchedule().
+
+Time Class
+- Attributes: mon_time (Integer - in mins), tue_time (Integer - in mins), wed_time (Integer - in mins), thu_time (Integer - in mins), fri_time (Integer - in mins), sat_time (Integer - in mins), sun_time (Integer - in mins).
+- Methods: set_monTime(new_time), set_tueTime(new_time), set_wedTime(new_time), set_thuTime(new_time), set_friTime(new_time), set_satTime(new_time), set_sunTime(new_time), get_monTime(), get_tueTime(), get_wedTime(), get_thuTime(), get_friTime(), get_satTime(), get_sunTime().
+
+
+Class Interactions & Expected Outputs: When a user inputs task details, the Schedule class instantiates a Task object. The task object uses the current coefficients from the Weights class to calculate its Priority Index (PI) using a formula, then sorts all tasks in descending order of their PI, and using the Time class, maps them into user-defined time availability daily. The expected output should be a clear, daily schedule, displaying each task’s name, description, deadline, assigned schedule, and computed Priority Index.
+
+**Sample class Diagram:**
+
+![Sample Diagram](https://lh3.googleusercontent.com/chat_attachment/AP1Ws4uIs0r67ZX9KYwmSyK5MT86P0XMya_5q87VAAZN8E80rNvOpclNdyGwgnoJIsWLo0OqWraFIF6-uQeUdIzuZbVW3wJQIRmizStA55rYxRj8zpC1O3bzBe9n34NNDEG8AXI6w1g57LzR4RP_6BjE0xl3buIfoRjiOs5x7JOEhtrwMKyzMxr_8_Rcx5h2MRKnu5GIaWPE4yKuW4CUnDSA5DWPHpnF-ThD0tPLcF0ZegcoOVuN938xbioP9rP--gdpaLASPdZO1ATvlvoiMdNNx0rQQ6t6fMvokcO1BVRV6K_zX5BebVwCMyfJp360RBJyRFk=w1310-h671-rw)
 
 ### Goals:
 
-Describe the long term outcomes of your project followed by a couple of objectives to meet the goals stated in this paragraph
+In the long run, this project aims to reduce academic burnout and stress among students by using a mathematical formula to automate task prioritization and scheduling rather than relying on personal judgment. This helps address common problems among students, such as missed deadlines, difficulty deciding which task to start first, and cramming several tasks into one day—all major factors in burnout and stress. It also aims to develop better time-management skills as students internalize personal scheduling skills that work for them. This integrates a disciplined approach of decomposing tasks and staying on top of deadlines into their system — important skills that will prove handy to them in their professional lives. Overall, optimized scheduling makes sure that tasks rated highest on the importance scale are done at the best possible time to utilize resources and have ample allowance to finish. This systematic approach combined with consistency will lead to improved academic performance seen through higher retention and higher quality submissions.
 
-- Objective 1:
-- Objective 2:
-- Objective n:
-
-[Click here for Rubrics and Sample projects](https://docs.google.com/document/d/1xKd1CqK6DcNWS2_oJPBNtY5n3I3Hqiw8FY3W295Iqfk/edit?usp=sharing)
+- Objective 1: Account for variables such as deadline proximity, estimated task duration, importance, and cognitive difficulty.
+- Objective 2: Consider time blocks when students cannot work (e.g., meals, rest, travelling)
+- Objective 3: Adaptability if inaccuracies are found in the original factors entered (e.g., underestimating task duration, deadline change), a refresh button is available to redo the formula based on the updated factors.
