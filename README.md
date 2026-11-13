@@ -43,9 +43,9 @@ Time Class
 
 Class Interactions & Expected Outputs: When a user inputs task details, the Schedule class instantiates a Task object. The task object uses the current coefficients from the Weights class to calculate its Priority Index (PI) using a formula, then sorts all tasks in descending order of their PI, and using the Time class, maps them into user-defined time availability daily. The expected output should be a clear, daily schedule, displaying each task’s name, description, deadline, assigned schedule, and computed Priority Index.
 
-**Sample class Diagram:**
+**Class Diagram:**
 
-![Sample Diagram](https://lh3.googleusercontent.com/chat_attachment/AP1Ws4uIs0r67ZX9KYwmSyK5MT86P0XMya_5q87VAAZN8E80rNvOpclNdyGwgnoJIsWLo0OqWraFIF6-uQeUdIzuZbVW3wJQIRmizStA55rYxRj8zpC1O3bzBe9n34NNDEG8AXI6w1g57LzR4RP_6BjE0xl3buIfoRjiOs5x7JOEhtrwMKyzMxr_8_Rcx5h2MRKnu5GIaWPE4yKuW4CUnDSA5DWPHpnF-ThD0tPLcF0ZegcoOVuN938xbioP9rP--gdpaLASPdZO1ATvlvoiMdNNx0rQQ6t6fMvokcO1BVRV6K_zX5BebVwCMyfJp360RBJyRFk=w1310-h671-rw)
+<img width="1310" height="485" alt="TaSched Class Diagram" src="https://github.com/user-attachments/assets/14e4399f-2cf4-4f51-832e-a7a0778fb9f0" />
 
 ### Goals:
 
